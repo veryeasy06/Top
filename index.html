@@ -90,40 +90,38 @@ body{
     color:#ffb300;
 }
 
-.send{
-    display:block;
-    text-align:center;
-    background:#25D366;
-    padding:12px;
-    border-radius:10px;
-    margin-top:10px;
-    text-decoration:none;
-    color:white;
+.delivery{
+    margin-top:5px;
+    color:#ff4444;
     font-weight:bold;
 }
 
-/* INPUTS */
-input, select{
+/* INPUT */
+.address-box{
     width:100%;
-    padding:10px;
+    padding:12px;
     margin-bottom:10px;
-    border-radius:8px;
+    border-radius:10px;
     border:none;
     outline:none;
 }
 
-/* IMAGES */
-.images{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
+/* REVIEWS */
+.review-box{
+    background:#111;
+    border:1px solid #ffb300;
+    padding:10px;
+    border-radius:10px;
 }
 
-.images img{
-    width:100%;
-    height:120px;
-    object-fit:cover;
-    border-radius:10px;
+.review{
+    border-bottom:1px solid #222;
+    padding:10px 0;
+}
+
+.stars{
+    color:#ffb300;
+    margin-bottom:4px;
 }
 </style>
 
@@ -141,18 +139,12 @@ input, select{
     <div class="title">🍽️ الأكل</div>
 
     <div class="grid">
-        <div class="item" onclick="add('شاورما دجاج',120)">شاورما دجاج - 120</div>
-        <div class="item" onclick="add('شاورما لحم',150)">شاورما لحم - 150</div>
-        <div class="item" onclick="add('كباب',180)">كباب - 180</div>
-        <div class="item" onclick="add('برغر',160)">برغر - 160</div>
-        <div class="item" onclick="add('بيتزا',170)">بيتزا - 170</div>
-        <div class="item" onclick="add('دجاج مقلي',140)">دجاج مقلي - 140</div>
-        <div class="item" onclick="add('كفتة',160)">كفتة - 160</div>
-        <div class="item" onclick="add('رز + لحم',190)">رز + لحم - 190</div>
-        <div class="item" onclick="add('مشاوي مشكلة',220)">مشاوي - 220</div>
-        <div class="item" onclick="add('سندويش شاورما',110)">سندويش - 110</div>
-        <div class="item" onclick="add('فاهيتا',170)">فاهيتا - 170</div>
-        <div class="item" onclick="add('بطاطا مقلية',60)">بطاطا - 60</div>
+        <div class="item" onclick="add('شاورما دجاج',120)">شاورما دجاج - 120 TL</div>
+        <div class="item" onclick="add('شاورما لحم',150)">شاورما لحم - 150 TL</div>
+        <div class="item" onclick="add('كباب',180)">كباب - 180 TL</div>
+        <div class="item" onclick="add('برغر',160)">برغر - 160 TL</div>
+        <div class="item" onclick="add('بيتزا',170)">بيتزا - 170 TL</div>
+        <div class="item" onclick="add('دجاج مقلي',140)">دجاج مقلي - 140 TL</div>
     </div>
 </div>
 
@@ -161,28 +153,11 @@ input, select{
     <div class="title">🥤 المشروبات</div>
 
     <div class="grid">
-        <div class="item" onclick="add('كولا',40)">كولا - 40</div>
-        <div class="item" onclick="add('سبرايت',40)">سبرايت - 40</div>
-        <div class="item" onclick="add('فانتا',40)">فانتا - 40</div>
-        <div class="item" onclick="add('ماء',20)">ماء - 20</div>
-        <div class="item" onclick="add('عصير برتقال',50)">برتقال - 50</div>
-        <div class="item" onclick="add('شاي',25)">شاي - 25</div>
-        <div class="item" onclick="add('قهوة',30)">قهوة - 30</div>
-        <div class="item" onclick="add('موهيتو',60)">موهيتو - 60</div>
-    </div>
-</div>
-
-<!-- IMAGES -->
-<div class="section">
-    <div class="images">
-        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
-        <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba">
-        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2">
-        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
-        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1">
-        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
-        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+        <div class="item" onclick="add('كولا',40)">كولا - 40 TL</div>
+        <div class="item" onclick="add('سبرايت',40)">سبرايت - 40 TL</div>
+        <div class="item" onclick="add('ماء',20)">ماء - 20 TL</div>
+        <div class="item" onclick="add('قهوة',30)">قهوة - 30 TL</div>
+        <div class="item" onclick="add('عيران',25)">عيران - 25 TL</div>
     </div>
 </div>
 
@@ -190,17 +165,45 @@ input, select{
 <div class="section">
     <div class="title">🛒 السلة</div>
 
-    <input id="address" type="text" placeholder="اكتب عنوانك بالتفصيل">
-
-    <select id="currency">
-        <option value="TL">TL - ليرة تركية</option>
-        <option value="USD">USD - دولار</option>
-        <option value="SYP">SYP - ليرة سورية</option>
-    </select>
+    <input id="address" class="address-box" type="text" placeholder="اكتب عنوانك بالتفصيل">
 
     <div class="cart" id="cart"></div>
 
-    <a class="send" onclick="sendOrder()">إرسال الطلب</a>
+    <a class="btn" onclick="sendOrder()">إرسال الطلب</a>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+    <div class="title">آراء العملاء</div>
+
+    <div class="review-box">
+
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            اكلهم كتير طيب والخدمة سريعة
+        </div>
+
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            أفضل مطعم من ناحية النظافة والطعم
+        </div>
+
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            التوصيل سريع والأسعار مناسبة
+        </div>
+
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            تجربة ممتازة أنصح فيه
+        </div>
+
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            جودة عالية وطعام طازج دائماً
+        </div>
+
+    </div>
 </div>
 
 <script>
@@ -225,12 +228,15 @@ function render(){
         total+=i.price;
         box.innerHTML+=`
         <div class="cart-item">
-            <span>${i.name} - ${i.price}</span>
+            <span>${i.name} - ${i.price} TL</span>
             <span class="del" onclick="removeItem(${index})">❌</span>
         </div>`;
     });
 
-    box.innerHTML+=`<div class="total">💰 المجموع: ${total}</div>`;
+    let delivery = total > 0 && total < 300 ? 50 : 0;
+
+    box.innerHTML+=`<div class="total">💰 المجموع: ${total} TL</div>`;
+    box.innerHTML+=`<div class="delivery">🚚 التوصيل: ${delivery} TL (فوق 300 مجاني)</div>`;
 }
 
 function sendOrder(){
@@ -240,7 +246,6 @@ function sendOrder(){
     }
 
     let address=document.getElementById("address").value;
-    let currency=document.getElementById("currency").value;
 
     if(address===""){
         alert("اكتب العنوان");
@@ -248,28 +253,19 @@ function sendOrder(){
     }
 
     let msg="طلب جديد:%0A";
-    msg+="📍 العنوان: "+address+"%0A";
-    msg+="💱 العملة: "+currency+"%0A%0A";
+    msg+="📍 العنوان: "+address+"%0A%0A";
 
     let total=0;
 
     cart.forEach(i=>{
-        msg+=i.name+" - "+i.price+" "+currency+"%0A";
+        msg+=i.name+" - "+i.price+" TL%0A";
         total+=i.price;
     });
 
-    let delivery=0;
+    let delivery = total > 0 && total < 300 ? 50 : 0;
 
-    if(total<300){
-        delivery=50;
-        msg+="%0A🚚 توصيل: 50 "+currency;
-    }else{
-        msg+="%0A🚚 توصيل مجاني";
-    }
-
-    let final=total+delivery;
-
-    msg+="%0A💰 المجموع النهائي: "+final+" "+currency;
+    msg+="%0A💰 المجموع: "+total+" TL";
+    msg+="%0A🚚 التوصيل: "+delivery+" TL (فوق 300 مجاني)";
 
     window.open("https://wa.me/905013617543?text="+msg,"_blank");
 }
