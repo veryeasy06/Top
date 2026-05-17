@@ -3,272 +3,857 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مطعم القمة</title>
+<title>مطعم القمة | QIMMA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-body{
-    margin:0;
-    font-family: Arial;
-    direction: rtl;
-    background:#0b0b0b;
-    color:white;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
 }
 
-.hero{
-    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.9)),
-    url('https://images.unsplash.com/photo-1550547660-d9450f859349') center/cover;
-    height:75vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+html,body{
+background:#090909;
+color:white;
+overflow-x:hidden;
 }
 
-.hero h1{
-    font-size:55px;
-    color:#ffb300;
+/* ANIMATION */
+
+@keyframes fadeUp{
+0%{
+opacity:0;
+transform:translateY(20px);
+}
+100%{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes glow{
+0%{box-shadow:0 0 5px #ffb300;}
+50%{box-shadow:0 0 25px #ffb300;}
+100%{box-shadow:0 0 5px #ffb300;}
+}
+
+@keyframes pop{
+0%{
+transform:scale(.7);
+opacity:0;
+}
+100%{
+transform:scale(1);
+opacity:1;
+}
+}
+
+/* LOGIN */
+
+.login{
+position:fixed;
+inset:0;
+background:#090909;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+
+.login-box{
+width:90%;
+max-width:380px;
+background:#121212;
+padding:25px;
+border-radius:25px;
+border:2px solid #ffb300;
+animation:pop .5s ease;
+}
+
+.logo{
+text-align:center;
+font-size:32px;
+font-weight:900;
+color:#ffb300;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:14px;
+background:#1c1c1c;
+color:white;
+margin-top:12px;
+font-size:15px;
 }
 
 .btn{
-    margin-top:15px;
-    background:#25D366;
-    padding:12px 22px;
-    border-radius:50px;
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+margin-top:12px;
+font-weight:bold;
+cursor:pointer;
+font-size:15px;
+transition:.2s;
 }
 
-.section{padding:20px;}
-
-.title{
-    text-align:center;
-    color:#ffb300;
-    font-size:24px;
-    margin:15px 0;
+.btn:hover{
+transform:scale(1.03);
 }
+
+.login-btn{
+background:#25D366;
+color:white;
+}
+
+.register-btn{
+background:#ffb300;
+color:black;
+}
+
+.guest-btn{
+background:#333;
+color:white;
+}
+
+/* HEADER */
+
+header{
+position:sticky;
+top:0;
+z-index:999;
+background:#111;
+padding:14px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #222;
+backdrop-filter:blur(8px);
+}
+
+.brand{
+font-size:24px;
+font-weight:900;
+color:#ffb300;
+}
+
+.user{
+font-size:14px;
+color:#ccc;
+}
+
+/* HERO */
+
+.hero{
+height:250px;
+position:relative;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero img{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(.35);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+animation:fadeUp .7s ease;
+}
+
+.hero h1{
+font-size:42px;
+color:#ffb300;
+font-weight:900;
+}
+
+.hero p{
+margin-top:10px;
+color:#ddd;
+font-size:16px;
+}
+
+/* SEARCH */
+
+.search-box{
+padding:14px;
+}
+
+.search{
+width:100%;
+padding:14px;
+border-radius:16px;
+border:none;
+outline:none;
+background:#1b1b1b;
+color:white;
+font-size:15px;
+}
+
+/* TABS */
+
+.tabs{
+display:flex;
+gap:10px;
+padding:0 14px 14px;
+overflow:auto;
+}
+
+.tab{
+padding:10px 18px;
+background:#161616;
+border-radius:30px;
+border:1px solid #2d2d2d;
+white-space:nowrap;
+cursor:pointer;
+transition:.2s;
+}
+
+.tab.active{
+background:#ffb300;
+color:black;
+font-weight:bold;
+}
+
+/* GRID */
 
 .grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+padding:14px;
 }
 
-.item{
-    background:#151515;
-    padding:10px;
-    border-radius:10px;
-    border:1px solid #2a2a2a;
-    cursor:pointer;
+.card{
+background:#141414;
+border-radius:22px;
+overflow:hidden;
+border:1px solid #222;
+position:relative;
+transition:.3s;
+animation:fadeUp .4s ease;
 }
 
-.item:hover{
-    border-color:#ffb300;
+.card:hover{
+transform:translateY(-4px);
+border-color:#ffb300;
+}
+
+.card img{
+width:100%;
+height:130px;
+object-fit:cover;
+}
+
+.card-body{
+padding:10px;
+}
+
+.card h3{
+color:#ffb300;
+font-size:17px;
+}
+
+.price{
+margin-top:6px;
+font-size:14px;
+color:#ddd;
+}
+
+.add-btn{
+position:absolute;
+bottom:10px;
+left:10px;
+width:38px;
+height:38px;
+border:none;
+border-radius:50%;
+background:#25D366;
+color:white;
+font-size:20px;
+cursor:pointer;
+animation:glow 2s infinite;
 }
 
 /* CART */
+
+.cart-btn{
+position:fixed;
+bottom:18px;
+left:18px;
+background:#ffb300;
+color:black;
+padding:14px 18px;
+border-radius:40px;
+font-weight:900;
+cursor:pointer;
+z-index:9999;
+box-shadow:0 0 20px rgba(255,179,0,.5);
+}
+
 .cart{
-    background:#111;
-    border:1px solid #ffb300;
-    padding:15px;
-    border-radius:12px;
+position:fixed;
+top:0;
+left:-420px;
+width:360px;
+height:100%;
+background:#111;
+z-index:99999;
+padding:18px;
+transition:.35s;
+overflow:auto;
+border-right:3px solid #ffb300;
+}
+
+.cart.open{
+left:0;
+}
+
+.cart-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+
+.close{
+background:red;
+border:none;
+width:35px;
+height:35px;
+border-radius:50%;
+color:white;
+cursor:pointer;
+font-size:18px;
 }
 
 .cart-item{
-    display:flex;
-    justify-content:space-between;
-    padding:6px 0;
-    border-bottom:1px solid #222;
+display:flex;
+justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid #222;
 }
 
-.del{color:red;cursor:pointer;}
-
 .total{
-    margin-top:10px;
-    font-size:18px;
-    color:#ffb300;
+margin-top:15px;
+font-size:20px;
+font-weight:bold;
+color:#ffb300;
 }
 
 .delivery{
-    margin-top:5px;
-    color:#ff4444;
-    font-weight:bold;
+margin-top:10px;
+color:#25D366;
+font-weight:bold;
 }
 
-/* INPUT */
-.address-box{
-    width:100%;
-    padding:12px;
-    margin-bottom:10px;
-    border-radius:10px;
-    border:none;
-    outline:none;
+.whatsapp{
+background:#25D366;
+color:white;
+}
+
+.invoice{
+background:#ffb300;
+color:black;
+}
+
+.confirm{
+background:#2196f3;
+color:white;
 }
 
 /* REVIEWS */
-.review-box{
-    background:#111;
-    border:1px solid #ffb300;
-    padding:10px;
-    border-radius:10px;
+
+.reviews{
+padding:14px;
+}
+
+.reviews h2{
+margin-bottom:12px;
+color:#ffb300;
 }
 
 .review{
-    border-bottom:1px solid #222;
-    padding:10px 0;
+background:#141414;
+border:1px solid #222;
+padding:14px;
+border-radius:16px;
+margin-bottom:10px;
+animation:fadeUp .4s ease;
 }
 
-.stars{
-    color:#ffb300;
-    margin-bottom:4px;
+/* INVOICE */
+
+.invoice-box{
+background:#141414;
+padding:14px;
+border-radius:18px;
+margin-top:14px;
+border:1px solid #333;
 }
+
+/* HIDDEN */
+
+.hidden{
+display:none;
+}
+
 </style>
-
 </head>
 
 <body>
 
+<!-- LOGIN -->
+
+<div class="login" id="loginPage">
+
+<div class="login-box">
+
+<div class="logo">🍔 QIMMA</div>
+
+<input type="text" id="user" placeholder="اسم المستخدم">
+<input type="password" id="pass" placeholder="كلمة المرور">
+
+<button class="btn login-btn" onclick="login()">تسجيل الدخول</button>
+<button class="btn register-btn" onclick="register()">إنشاء حساب</button>
+<button class="btn guest-btn" onclick="guest()">الدخول كضيف</button>
+
+</div>
+
+</div>
+
+<!-- APP -->
+
+<div id="app" class="hidden">
+
+<header>
+<div class="brand">QIMMA FOOD</div>
+<div class="user">👤 <span id="username">ضيف</span></div>
+</header>
+
+<!-- HERO -->
+
 <div class="hero">
-    <h1>مطعم القمة</h1>
-    <a class="btn" href="https://wa.me/905013617543">اطلب واتساب</a>
+
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+
+<div class="hero-content">
+<h1>مطعم القمة</h1>
+<p>أقوى تجربة طعام وتوصيل سريع 🔥</p>
+</div>
+
+</div>
+
+<!-- SEARCH -->
+
+<div class="search-box">
+<input class="search" id="search" oninput="filterItems()" placeholder="ابحث عن وجبتك...">
+</div>
+
+<!-- TABS -->
+
+<div class="tabs">
+
+<div class="tab active" onclick="showTab('food',this)">🍔 وجبات</div>
+
+<div class="tab" onclick="showTab('drinks',this)">🥤 مشروبات</div>
+
+<div class="tab" onclick="showTab('dessert',this)">🍰 حلويات</div>
+
 </div>
 
 <!-- FOOD -->
-<div class="section">
-    <div class="title">🍽️ الأكل</div>
 
-    <div class="grid">
-        <div class="item" onclick="add('شاورما دجاج',120)">شاورما دجاج - 120 TL</div>
-        <div class="item" onclick="add('شاورما لحم',150)">شاورما لحم - 150 TL</div>
-        <div class="item" onclick="add('كباب',180)">كباب - 180 TL</div>
-        <div class="item" onclick="add('برغر',160)">برغر - 160 TL</div>
-        <div class="item" onclick="add('بيتزا',170)">بيتزا - 170 TL</div>
-        <div class="item" onclick="add('دجاج مقلي',140)">دجاج مقلي - 140 TL</div>
-    </div>
+<div class="grid" id="food">
+
+<div class="card" data-name="شاورما">
+<img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783">
+<div class="card-body">
+<h3>شاورما دجاج</h3>
+<div class="price">120 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('شاورما دجاج',120)">+</button>
+</div>
+
+<div class="card" data-name="برغر">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+<div class="card-body">
+<h3>برغر لحم</h3>
+<div class="price">150 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('برغر لحم',150)">+</button>
+</div>
+
+<div class="card" data-name="بيتزا">
+<img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9">
+<div class="card-body">
+<h3>بيتزا</h3>
+<div class="price">170 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('بيتزا',170)">+</button>
+</div>
+
+<div class="card" data-name="كباب">
+<img src="https://images.unsplash.com/photo-1544025162-d76694265947">
+<div class="card-body">
+<h3>كباب</h3>
+<div class="price">180 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('كباب',180)">+</button>
+</div>
+
+<div class="card" data-name="فروج">
+<img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1">
+<div class="card-body">
+<h3>فروج مشوي</h3>
+<div class="price">220 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('فروج مشوي',220)">+</button>
+</div>
+
+<div class="card" data-name="بطاطا">
+<img src="https://images.unsplash.com/photo-1576107232684-1279f390859f">
+<div class="card-body">
+<h3>بطاطا مقلية</h3>
+<div class="price">70 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('بطاطا مقلية',70)">+</button>
+</div>
+
 </div>
 
 <!-- DRINKS -->
-<div class="section">
-    <div class="title">🥤 المشروبات</div>
 
-    <div class="grid">
-        <div class="item" onclick="add('كولا',40)">كولا - 40 TL</div>
-        <div class="item" onclick="add('سبرايت',40)">سبرايت - 40 TL</div>
-        <div class="item" onclick="add('ماء',20)">ماء - 20 TL</div>
-        <div class="item" onclick="add('قهوة',30)">قهوة - 30 TL</div>
-        <div class="item" onclick="add('عيران',25)">عيران - 25 TL</div>
-    </div>
+<div class="grid hidden" id="drinks">
+
+<div class="card" data-name="كولا">
+<img src="https://images.unsplash.com/photo-1581636625402-29b2a704ef13">
+<div class="card-body">
+<h3>كولا</h3>
+<div class="price">40 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('كولا',40)">+</button>
 </div>
 
-<!-- CART -->
-<div class="section">
-    <div class="title">🛒 السلة</div>
+<div class="card" data-name="فانتا">
+<img src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e">
+<div class="card-body">
+<h3>فانتا</h3>
+<div class="price">40 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('فانتا',40)">+</button>
+</div>
 
-    <input id="address" class="address-box" type="text" placeholder="اكتب عنوانك بالتفصيل">
+<div class="card" data-name="عيران">
+<img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da">
+<div class="card-body">
+<h3>عيران</h3>
+<div class="price">35 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('عيران',35)">+</button>
+</div>
 
-    <div class="cart" id="cart"></div>
+<div class="card" data-name="قهوة">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
+<div class="card-body">
+<h3>قهوة</h3>
+<div class="price">50 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('قهوة',50)">+</button>
+</div>
 
-    <a class="btn" onclick="sendOrder()">إرسال الطلب</a>
+<div class="card" data-name="عصير">
+<img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba">
+<div class="card-body">
+<h3>عصير طبيعي</h3>
+<div class="price">60 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('عصير طبيعي',60)">+</button>
+</div>
+
+<div class="card" data-name="ماء">
+<img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?utm_source=chatgpt.com">
+<div class="card-body">
+<h3>ماء</h3>
+<div class="price">20 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('ماء',20)">+</button>
+</div>
+
+</div>
+
+<!-- DESSERT -->
+
+<div class="grid hidden" id="dessert">
+
+<div class="card" data-name="تشيز">
+<img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad">
+<div class="card-body">
+<h3>تشيز كيك</h3>
+<div class="price">95 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('تشيز كيك',95)">+</button>
+</div>
+
+<div class="card" data-name="كنافة">
+<img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729">
+<div class="card-body">
+<h3>كنافة</h3>
+<div class="price">85 TL</div>
+</div>
+<button class="add-btn" onclick="addToCart('كنافة',85)">+</button>
+</div>
+
 </div>
 
 <!-- REVIEWS -->
-<div class="section">
-    <div class="title">آراء العملاء</div>
 
-    <div class="review-box">
+<div class="reviews">
 
-        <div class="review">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            اكلهم كتير طيب والخدمة سريعة
-        </div>
+<h2>⭐ تقييمات العملاء</h2>
 
-        <div class="review">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            أفضل مطعم من ناحية النظافة والطعم
-        </div>
+<div class="review">⭐⭐⭐⭐⭐ أفضل مطعم جربته بحياتي</div>
+<div class="review">⭐⭐⭐⭐⭐ التوصيل سريع والطعام ساخن</div>
+<div class="review">⭐⭐⭐⭐⭐ البرغر رهيب جداً</div>
+<div class="review">⭐⭐⭐⭐⭐ جودة عالية وأسعار ممتازة</div>
+<div class="review">⭐⭐⭐⭐⭐ صار مطعمي المفضل</div>
+<div class="review">⭐⭐⭐⭐⭐ أنصح الجميع فيه</div>
+<div class="review">⭐⭐⭐⭐⭐ التغليف مرتب والطعم خرافي</div>
 
-        <div class="review">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            التوصيل سريع والأسعار مناسبة
-        </div>
+</div>
 
-        <div class="review">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            تجربة ممتازة أنصح فيه
-        </div>
+</div>
 
-        <div class="review">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            جودة عالية وطعام طازج دائماً
-        </div>
+<!-- CART BUTTON -->
 
-    </div>
+<div class="cart-btn" onclick="toggleCart()">
+🛒 السلة (<span id="cartCount">0</span>)
+</div>
+
+<!-- CART -->
+
+<div class="cart" id="cart">
+
+<div class="cart-header">
+<h2>🛒 السلة</h2>
+<button class="close" onclick="toggleCart()">×</button>
+</div>
+
+<div id="cartItems"></div>
+
+<div class="total" id="totalPrice">
+المجموع: 0 TL
+</div>
+
+<div class="delivery" id="deliveryPrice">
+🚚 التوصيل: 50 TL
+</div>
+
+<div class="invoice-box" id="invoiceBox">
+📄 رقم الفاتورة: #1001
+</div>
+
+<button class="btn confirm" onclick="confirmOrder()">
+✔ تأكيد الطلب
+</button>
+
+<button class="btn whatsapp" onclick="sendWhatsApp()">
+📲 إرسال الطلب واتساب
+</button>
+
+<button class="btn invoice" onclick="downloadInvoice()">
+🧾 عرض الفاتورة
+</button>
+
 </div>
 
 <script>
+
 let cart=[];
+let invoiceNumber=1001;
 
-function add(name,price){
-    cart.push({name,price});
-    render();
+function login(){
+let username=document.getElementById("user").value || "مستخدم";
+start(username);
 }
 
-function removeItem(i){
-    cart.splice(i,1);
-    render();
+function register(){
+alert("✅ تم إنشاء الحساب بنجاح");
 }
 
-function render(){
-    let box=document.getElementById("cart");
-    box.innerHTML="";
-    let total=0;
-
-    cart.forEach((i,index)=>{
-        total+=i.price;
-        box.innerHTML+=`
-        <div class="cart-item">
-            <span>${i.name} - ${i.price} TL</span>
-            <span class="del" onclick="removeItem(${index})">❌</span>
-        </div>`;
-    });
-
-    let delivery = total > 0 && total < 300 ? 50 : 0;
-
-    box.innerHTML+=`<div class="total">💰 المجموع: ${total} TL</div>`;
-    box.innerHTML+=`<div class="delivery">🚚 التوصيل: ${delivery} TL (فوق 300 مجاني)</div>`;
+function guest(){
+start("ضيف");
 }
 
-function sendOrder(){
-    if(cart.length===0){
-        alert("السلة فاضية");
-        return;
-    }
-
-    let address=document.getElementById("address").value;
-
-    if(address===""){
-        alert("اكتب العنوان");
-        return;
-    }
-
-    let msg="طلب جديد:%0A";
-    msg+="📍 العنوان: "+address+"%0A%0A";
-
-    let total=0;
-
-    cart.forEach(i=>{
-        msg+=i.name+" - "+i.price+" TL%0A";
-        total+=i.price;
-    });
-
-    let delivery = total > 0 && total < 300 ? 50 : 0;
-
-    msg+="%0A💰 المجموع: "+total+" TL";
-    msg+="%0A🚚 التوصيل: "+delivery+" TL (فوق 300 مجاني)";
-
-    window.open("https://wa.me/905013617543?text="+msg,"_blank");
+function start(name){
+document.getElementById("loginPage").style.display="none";
+document.getElementById("app").classList.remove("hidden");
+document.getElementById("username").innerText=name;
 }
+
+function addToCart(name,price){
+
+cart.push({name,price});
+
+renderCart();
+
+document.getElementById("cartCount").innerText=cart.length;
+
+}
+
+function renderCart(){
+
+let items=document.getElementById("cartItems");
+
+items.innerHTML="";
+
+let total=0;
+
+cart.forEach(item=>{
+
+total+=item.price;
+
+items.innerHTML+=`
+<div class="cart-item">
+<span>${item.name}</span>
+<span>${item.price} TL</span>
+</div>
+`;
+
+});
+
+let delivery=50;
+
+if(total>=300){
+delivery=0;
+}
+
+document.getElementById("totalPrice").innerHTML=
+"💰 المجموع: "+total+" TL";
+
+document.getElementById("deliveryPrice").innerHTML=
+delivery==0
+?
+"🚚 التوصيل مجاني لأن الطلب فوق 300 TL"
+:
+"🚚 التوصيل: 50 TL";
+
+document.getElementById("invoiceBox").innerHTML=
+"📄 رقم الفاتورة: #"+invoiceNumber;
+
+}
+
+function toggleCart(){
+document.getElementById("cart").classList.toggle("open");
+}
+
+function confirmOrder(){
+
+if(cart.length==0){
+alert("السلة فارغة");
+return;
+}
+
+alert("✅ تم تأكيد الطلب بنجاح");
+
+}
+
+function sendWhatsApp(){
+
+if(cart.length==0){
+alert("السلة فارغة");
+return;
+}
+
+let msg="🍔 طلب جديد من مطعم القمة %0A%0A";
+
+let total=0;
+
+cart.forEach(item=>{
+
+msg+=item.name+" - "+item.price+" TL%0A";
+
+total+=item.price;
+
+});
+
+let delivery= total>=300 ? 0 : 50;
+
+msg+="%0A💰 المجموع: "+total+" TL";
+
+msg+="%0A🚚 التوصيل: "+delivery+" TL";
+
+window.open(
+"https://wa.me/905013617543?text="+msg,
+"_blank"
+);
+
+}
+
+function downloadInvoice(){
+
+if(cart.length==0){
+alert("السلة فارغة");
+return;
+}
+
+alert("🧾 تم إنشاء الفاتورة رقم #"+invoiceNumber);
+
+invoiceNumber++;
+
+}
+
+function showTab(id,el){
+
+document.getElementById("food").classList.add("hidden");
+document.getElementById("drinks").classList.add("hidden");
+document.getElementById("dessert").classList.add("hidden");
+
+document.getElementById(id).classList.remove("hidden");
+
+document.querySelectorAll(".tab").forEach(tab=>{
+tab.classList.remove("active");
+});
+
+el.classList.add("active");
+
+}
+
+function filterItems(){
+
+let value=document.getElementById("search").value;
+
+document.querySelectorAll(".card").forEach(card=>{
+
+let name=card.dataset.name;
+
+if(name.includes(value)){
+card.style.display="block";
+}else{
+card.style.display="none";
+}
+
+});
+
+}
+
 </script>
 
 </body>
