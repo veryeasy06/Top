@@ -102,7 +102,17 @@ body{
     font-weight:bold;
 }
 
-/* IMAGES (NO TITLE) */
+/* INPUTS */
+input, select{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:8px;
+    border:none;
+    outline:none;
+}
+
+/* IMAGES */
 .images{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -121,7 +131,6 @@ body{
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
     <h1>مطعم القمة</h1>
     <a class="btn" href="https://wa.me/905013617543">اطلب واتساب</a>
@@ -163,7 +172,7 @@ body{
     </div>
 </div>
 
-<!-- IMAGES ONLY -->
+<!-- IMAGES -->
 <div class="section">
     <div class="images">
         <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
@@ -180,7 +189,17 @@ body{
 <!-- CART -->
 <div class="section">
     <div class="title">🛒 السلة</div>
+
+    <input id="address" type="text" placeholder="اكتب عنوانك بالتفصيل">
+
+    <select id="currency">
+        <option value="TL">TL - ليرة تركية</option>
+        <option value="USD">USD - دولار</option>
+        <option value="SYP">SYP - ليرة سورية</option>
+    </select>
+
     <div class="cart" id="cart"></div>
+
     <a class="send" onclick="sendOrder()">إرسال الطلب</a>
 </div>
 
@@ -200,12 +219,10 @@ function removeItem(i){
 function render(){
     let box=document.getElementById("cart");
     box.innerHTML="";
-
     let total=0;
 
     cart.forEach((i,index)=>{
         total+=i.price;
-
         box.innerHTML+=`
         <div class="cart-item">
             <span>${i.name} - ${i.price}</span>
@@ -213,7 +230,7 @@ function render(){
         </div>`;
     });
 
-    box.innerHTML+=`<div class="total">💰 المجموع: ${total} TL</div>`;
+    box.innerHTML+=`<div class="total">💰 المجموع: ${total}</div>`;
 }
 
 function sendOrder(){
@@ -222,27 +239,37 @@ function sendOrder(){
         return;
     }
 
+    let address=document.getElementById("address").value;
+    let currency=document.getElementById("currency").value;
+
+    if(address===""){
+        alert("اكتب العنوان");
+        return;
+    }
+
     let msg="طلب جديد:%0A";
+    msg+="📍 العنوان: "+address+"%0A";
+    msg+="💱 العملة: "+currency+"%0A%0A";
+
     let total=0;
 
     cart.forEach(i=>{
-        msg+=i.name+" - "+i.price+"TL%0A";
+        msg+=i.name+" - "+i.price+" "+currency+"%0A";
         total+=i.price;
     });
 
-    // 🚚 Delivery logic
     let delivery=0;
 
-    if(total < 300){
+    if(total<300){
         delivery=50;
-        msg+="%0A🚚 أجرة طريق: 50 TL";
+        msg+="%0A🚚 توصيل: 50 "+currency;
     }else{
         msg+="%0A🚚 توصيل مجاني";
     }
 
     let final=total+delivery;
 
-    msg+="%0A💰 المجموع النهائي: "+final+" TL";
+    msg+="%0A💰 المجموع النهائي: "+final+" "+currency;
 
     window.open("https://wa.me/905013617543?text="+msg,"_blank");
 }
