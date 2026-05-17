@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مطعم القمة</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    direction: rtl;
+    background:#0b0b0b;
+    color:white;
+}
+
+.hero{
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.9)),
+    url('https://images.unsplash.com/photo-1550547660-d9450f859349') center/cover;
+    height:75vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:55px;
+    color:#ffb300;
+}
+
+.btn{
+    margin-top:15px;
+    background:#25D366;
+    padding:12px 22px;
+    border-radius:50px;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.section{padding:20px;}
+
+.title{
+    text-align:center;
+    color:#ffb300;
+    font-size:24px;
+    margin:15px 0;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.item{
+    background:#151515;
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #2a2a2a;
+    cursor:pointer;
+}
+
+.item:hover{
+    border-color:#ffb300;
+}
+
+/* CART */
+.cart{
+    background:#111;
+    border:1px solid #ffb300;
+    padding:15px;
+    border-radius:12px;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+    border-bottom:1px solid #222;
+}
+
+.del{color:red;cursor:pointer;}
+
+.total{
+    margin-top:10px;
+    font-size:18px;
+    color:#ffb300;
+}
+
+.send{
+    display:block;
+    text-align:center;
+    background:#25D366;
+    padding:12px;
+    border-radius:10px;
+    margin-top:10px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+}
+
+/* IMAGES (NO TITLE) */
+.images{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.images img{
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>مطعم القمة</h1>
+    <a class="btn" href="https://wa.me/905013617543">اطلب واتساب</a>
+</div>
+
+<!-- FOOD -->
+<div class="section">
+    <div class="title">🍽️ الأكل</div>
+
+    <div class="grid">
+        <div class="item" onclick="add('شاورما دجاج',120)">شاورما دجاج - 120</div>
+        <div class="item" onclick="add('شاورما لحم',150)">شاورما لحم - 150</div>
+        <div class="item" onclick="add('كباب',180)">كباب - 180</div>
+        <div class="item" onclick="add('برغر',160)">برغر - 160</div>
+        <div class="item" onclick="add('بيتزا',170)">بيتزا - 170</div>
+        <div class="item" onclick="add('دجاج مقلي',140)">دجاج مقلي - 140</div>
+        <div class="item" onclick="add('كفتة',160)">كفتة - 160</div>
+        <div class="item" onclick="add('رز + لحم',190)">رز + لحم - 190</div>
+        <div class="item" onclick="add('مشاوي مشكلة',220)">مشاوي - 220</div>
+        <div class="item" onclick="add('سندويش شاورما',110)">سندويش - 110</div>
+        <div class="item" onclick="add('فاهيتا',170)">فاهيتا - 170</div>
+        <div class="item" onclick="add('بطاطا مقلية',60)">بطاطا - 60</div>
+    </div>
+</div>
+
+<!-- DRINKS -->
+<div class="section">
+    <div class="title">🥤 المشروبات</div>
+
+    <div class="grid">
+        <div class="item" onclick="add('كولا',40)">كولا - 40</div>
+        <div class="item" onclick="add('سبرايت',40)">سبرايت - 40</div>
+        <div class="item" onclick="add('فانتا',40)">فانتا - 40</div>
+        <div class="item" onclick="add('ماء',20)">ماء - 20</div>
+        <div class="item" onclick="add('عصير برتقال',50)">برتقال - 50</div>
+        <div class="item" onclick="add('شاي',25)">شاي - 25</div>
+        <div class="item" onclick="add('قهوة',30)">قهوة - 30</div>
+        <div class="item" onclick="add('موهيتو',60)">موهيتو - 60</div>
+    </div>
+</div>
+
+<!-- IMAGES ONLY -->
+<div class="section">
+    <div class="images">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+        <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba">
+        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2">
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+    </div>
+</div>
+
+<!-- CART -->
+<div class="section">
+    <div class="title">🛒 السلة</div>
+    <div class="cart" id="cart"></div>
+    <a class="send" onclick="sendOrder()">إرسال الطلب</a>
+</div>
+
+<script>
+let cart=[];
+
+function add(name,price){
+    cart.push({name,price});
+    render();
+}
+
+function removeItem(i){
+    cart.splice(i,1);
+    render();
+}
+
+function render(){
+    let box=document.getElementById("cart");
+    box.innerHTML="";
+
+    let total=0;
+
+    cart.forEach((i,index)=>{
+        total+=i.price;
+
+        box.innerHTML+=`
+        <div class="cart-item">
+            <span>${i.name} - ${i.price}</span>
+            <span class="del" onclick="removeItem(${index})">❌</span>
+        </div>`;
+    });
+
+    box.innerHTML+=`<div class="total">💰 المجموع: ${total} TL</div>`;
+}
+
+function sendOrder(){
+    if(cart.length===0){
+        alert("السلة فاضية");
+        return;
+    }
+
+    let msg="طلب جديد:%0A";
+    let total=0;
+
+    cart.forEach(i=>{
+        msg+=i.name+" - "+i.price+"TL%0A";
+        total+=i.price;
+    });
+
+    // 🚚 Delivery logic
+    let delivery=0;
+
+    if(total < 300){
+        delivery=50;
+        msg+="%0A🚚 أجرة طريق: 50 TL";
+    }else{
+        msg+="%0A🚚 توصيل مجاني";
+    }
+
+    let final=total+delivery;
+
+    msg+="%0A💰 المجموع النهائي: "+final+" TL";
+
+    window.open("https://wa.me/905013617543?text="+msg,"_blank");
+}
+</script>
+
+</body>
+</html>
